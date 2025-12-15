@@ -1,4 +1,4 @@
-package com.wallet.user_service;
+package com.wallet.user_service.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
