@@ -19,13 +19,13 @@ import com.wallet.user_service.dto.res.ApiResponse;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler(RuntimeException.class)
-	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-	public ApiResponse handleAnyException(RuntimeException e) {
+	@ExceptionHandler(UserAlreadyExistsException.class)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	public ApiResponse handleUserAlreadyExistsException(RuntimeException e) {
 		return new ApiResponse(e.getMessage());
 	}
 	
-	@ExceptionHandler(ResourceNotFound.class)
+	@ExceptionHandler(ResourceNotFoundException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	public ApiResponse handleResourceNotFound(RuntimeException e) {
 		return new ApiResponse(e.getMessage());
@@ -38,5 +38,11 @@ public class GlobalExceptionHandler {
 		Map<String, String> map = fieldErrors.stream()
 				.collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(map);
+	}
+	
+	@ExceptionHandler(RuntimeException.class)
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	public ApiResponse handleAnyException(RuntimeException e) {
+		return new ApiResponse(e.getMessage());
 	}
 }

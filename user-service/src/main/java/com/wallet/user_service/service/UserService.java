@@ -9,7 +9,7 @@ import com.wallet.user_service.entity.User;
 
 public interface UserService {
 	
-	Optional<User> getUserById(Long userId);
+	UserResponse getUserById(Long userId);
 	UserResponse createUser(CreateUserReqDto dto);
-	UserResponse updateUser(UpdateUserReqDto dto);
+	UserResponse updateUser(Long userId , UpdateUserReqDto dto);
 }
