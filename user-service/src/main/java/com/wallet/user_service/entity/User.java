@@ -48,5 +48,5 @@ public class User {
 	private String address;
 	
 	@Enumerated(EnumType.STRING)
-	private UserStatus status;
+	private UserStatus status = UserStatus.ACTIVE;
 }
