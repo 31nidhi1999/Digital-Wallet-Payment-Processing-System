@@ -1,5 +1,7 @@
 package com.wallet.user_service.dto.res;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,5 +14,9 @@ import lombok.Setter;
 public class ApiResponse<T> {
 	
 	private String message;
-	private T data;
+	private LocalDateTime dateTime;
+	public ApiResponse(String message) {
+		super();
+		this.message = message;
+	}
 }

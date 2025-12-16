@@ -3,6 +3,7 @@ package com.wallet.user_service.dto.req;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -16,17 +17,18 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateUserReqDto {
 	
-	@NotBlank
+	@NotBlank(message = "Full name is required")
     private String fullName;
 
-	@NotBlank
+	@Email(message = "Invalid email format")
+    @NotBlank(message = "Email is required")
 	private String email;
 	
 	@NotEmpty
 	private String mobileNumber;
 	
 	@NotBlank
-	@Length(max = 20, min = 5)
+	@Length(max = 20, min = 5, message = "Password must be at least 8 characters")
 	private String password;
 
 	@NotBlank
