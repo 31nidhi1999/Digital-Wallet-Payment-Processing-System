@@ -13,7 +13,7 @@ public class WalletServiceApplication {
 	}
 	
 	@Bean
-	private ModelMapper modelMapper() {
-		return modelMapper();
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 }

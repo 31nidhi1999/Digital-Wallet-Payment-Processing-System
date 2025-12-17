@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.wallet.wallet_service.dto.req.CreateWalletReqDto;
+import com.wallet.wallet_service.dto.res.ApiResponse;
 import com.wallet.wallet_service.dto.res.WalletResponseDto;
 import com.wallet.wallet_service.entity.WalletEntity;
 import com.wallet.wallet_service.exception.WalletAlreadyExistsException;
@@ -23,13 +24,16 @@ public class WalletServiceImpl implements WalletService {
 	private ModelMapper modelMapper;
 	
 	@Override
-	public WalletResponseDto createWallet(CreateWalletReqDto dto) {
+	public ApiResponse createWallet(CreateWalletReqDto dto) {
 		
 		if(walletRepository.existsByUserId(dto.getUserId())) {
+			System.out.println("create wallet existsByUserId");
 			throw new WalletAlreadyExistsException("Wallet already exists for this user");
 		}
-		WalletEntity wallet = modelMapper.map(dto,WalletEntity.class);
-		return modelMapper.map(wallet, WalletResponseDto.class);
+		WalletEntity wallet = new WalletEntity();
+		wallet.setUserId(dto.getUserId());
+		walletRepository.save(wallet);
+		return new ApiResponse("Wallet for UserId  : " + dto.getUserId() +" is created");
 	}
 
 	@Override
