@@ -18,5 +18,6 @@ public class ApiResponse {
 	public ApiResponse(String message) {
 		super();
 		this.message = message;
+		dateTime = LocalDateTime.now();
 	}
 }

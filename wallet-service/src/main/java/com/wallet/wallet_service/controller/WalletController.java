@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wallet.wallet_service.dto.req.CreateWalletReqDto;
+import com.wallet.wallet_service.dto.res.ApiResponse;
 import com.wallet.wallet_service.dto.res.WalletResponseDto;
 import com.wallet.wallet_service.service.WalletService;
 
@@ -23,7 +24,7 @@ public class WalletController {
 	private WalletService walletService;
 	
 	@PostMapping
-	public ResponseEntity<WalletResponseDto> createWallet(@Valid @RequestBody CreateWalletReqDto dto){
+	public ResponseEntity<ApiResponse> createWallet(@Valid @RequestBody CreateWalletReqDto dto){
 		return  ResponseEntity.ok(walletService.createWallet(dto));
 	}
 	

@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 	
-	@ExceptionHandler(WalletAlreadyExistsException.class)
+	@ExceptionHandler(WalletNotFoundException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	public ApiResponse handleWalletNotFoundException(RuntimeException e) {
 		return new ApiResponse(e.getMessage());
