@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.wallet.user_service.dto.res.ApiResponse;
+import com.wallet.user_service.dto.ApiResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 	
-	@ExceptionHandler(ResourceNotFoundException.class)
+	@ExceptionHandler(UserNotFoundException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	public ApiResponse handleResourceNotFound(RuntimeException e) {
 		return new ApiResponse(e.getMessage());

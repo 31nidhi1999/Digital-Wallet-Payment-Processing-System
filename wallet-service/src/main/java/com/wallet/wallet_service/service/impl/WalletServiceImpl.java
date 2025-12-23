@@ -1,5 +1,7 @@
 package com.wallet.wallet_service.service.impl;
 
+import java.math.BigDecimal;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class WalletServiceImpl implements WalletService {
 
 	private WalletRepository walletRepository;
 	private ModelMapper modelMapper;
-	
+
 	@Override
 	public ApiResponse createWallet(CreateWalletReqDto dto) {
 		

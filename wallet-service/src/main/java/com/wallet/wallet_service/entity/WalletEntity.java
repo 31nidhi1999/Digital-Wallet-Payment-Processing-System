@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,5 +43,8 @@ public class WalletEntity {
 	
 	@UpdateTimestamp
 	private LocalDateTime updateAt;
+	
+	@Version
+	private Long version;
 	
 }
