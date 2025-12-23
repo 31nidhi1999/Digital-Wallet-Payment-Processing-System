@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 
 import org.springframework.data.web.JsonPath;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -13,6 +16,7 @@ import lombok.Setter;
 @Setter
 public class TransactionDTO {
 	
+		@JsonProperty(access = Access.READ_ONLY)
 		private Long id;
 
 	    @NotNull

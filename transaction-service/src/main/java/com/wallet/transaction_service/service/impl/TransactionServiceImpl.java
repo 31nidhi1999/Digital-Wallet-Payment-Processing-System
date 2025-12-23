@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wallet.transaction_service.dto.TransactionDTO;
 import com.wallet.transaction_service.entity.Transaction;
+import com.wallet.transaction_service.entity.TransactionStatus;
 import com.wallet.transaction_service.repository.TransactionRepo;
 import com.wallet.transaction_service.service.TransactionService;
 
@@ -25,11 +27,13 @@ import lombok.AllArgsConstructor;
 public class TransactionServiceImpl implements TransactionService {
 	
 	private TransactionRepo transactionRepo;
+	private ModelMapper modelMapper;
 	
 	@Override
 	public TransactionDTO createTransaction(TransactionDTO dto) {
-		
-		return null;
+		Transaction transaction = modelMapper.map(dto, Transaction.class);
+		transaction.setStatus(TransactionStatus.SUCCESS);
+		return modelMapper.map(transactionRepo.save(transaction), TransactionDTO.class);
 	}
 
 }
